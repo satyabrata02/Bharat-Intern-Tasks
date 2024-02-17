@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">my to-do application</h2>
+        <form method="post" id="new-task">
+            {% csrf_token %}
+            <div class="addTask">
+                <input type="text" name="task" maxlength="46" required>
+                <label>Add a New Task</label>
+                <button type="submit">Add</button>
+            </div>
+        </form>
+        {% if not_completed_tasks %}
+        <ol class="notCompleted">
+            <h3>Not Completed</h3>
+            {% for task in not_completed_tasks %}
+            <form action="/update_task2/{{ task.id }}/" method="post">
+                {% csrf_token %}
+                <li>
+                    <input type="text" class="inptxt" name="utask" value="{{task.tname}}" maxlength="46" readonly>
+                    <a href="/update_task/{{task.id}}" class="edit-check"><i class="fas fa-check"></i></a>
+                    <a class="edit-task"><i class="fas fa-pen-to-square"></i></a>
+                    <a class="close-task"><i class="fas fa-xmark"></i></a>
+                    <button type="submit" class="edit-task2"><i class="fas fa-check"></i></button>
+                    <a href="/delete_task/{{task.id}}" class="edit-trash"><i class="fas fa-trash"></i></a>
+                </li>
+            </form>
+            {% endfor %}
+        </ol>
+        {% endif %}
+        <h4 class="msg">{{msg}}</h4>
+        {% if completed_tasks %}
+        <ol class="Completed">
+            <h3>Completed</h3>
+            {% for task in completed_tasks %}
+            <li>
+                <input type="text" value="{{task.tname}}" maxlength="46" readonly>
+                <a href="/delete_task/{{task.id}}"><i class="fas fa-trash"></i></a>
+            </li>
+            {% endfor %}
+        </ol>
+        {% endif %}
+        
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

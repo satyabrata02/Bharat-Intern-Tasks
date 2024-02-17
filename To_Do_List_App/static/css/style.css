@@ -1,0 +1,205 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background-image: url('../images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.container{
+    position: relative;
+    max-width: 800px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.container .title{
+    font-size: 28px;
+    margin: 20px 0;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    user-select: none;
+}
+
+.container form .addTask{
+    position: relative;
+    width: 100%;
+    display: flex;
+    padding: 10px 0;
+}
+
+.container form .addTask input[type="text"]{
+    width: 90%;
+    color: #333;
+    padding-left: 10px;
+    border: none;
+    border-bottom: 2px solid #666;
+    background: none;
+    font-size: 22px;
+    outline: none;
+}
+
+form .addTask input[type="text"]:focus{
+    border-bottom: 2px solid #00126c;
+}
+
+form .addTask input[type="text"]:focus ~ label,
+form .addTask input[type="text"]:valid ~ label{
+    transform: translateY(-20px);
+    font-size: 15px;
+    font-family: cursive;
+    color: #00126c;
+}
+
+.container form .addTask label{
+    position: absolute;
+    font-size: 20px;
+    bottom: 20px;
+    left: 10px;
+    color: #666;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.container form .addTask button{
+    margin: 0 10px;
+    background: #222;
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.container form .addTask button:hover{
+    background: #424141;
+}
+
+.container .msg{
+    font-size: 24px;
+    width: fit-content;
+    position: relative;
+    margin-top: 1rem;
+    transform: translateX(-50%);
+    left: 50%;
+    text-transform: capitalize;
+    text-align: center;
+    color: red;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+.container .msg:hover{
+    font-size: 28px;
+    color: #020091;
+}
+
+.container .notCompleted,
+.container .Completed{
+    margin: 5px 0;
+    padding: 20px;
+}
+
+.container ol{
+    list-style: none;
+    counter-reset: my-counter;
+}
+
+.container ol h3{
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    text-align: center;
+    color: #fff;
+    user-select: none;
+}
+
+.container ol li{
+    width: 100%;
+    padding: 8px 0 8px 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    background: linear-gradient(139deg, #7f00ff, #ff00d4);
+    counter-increment: my-counter;
+}
+
+.container ol.Completed li{
+    background: linear-gradient(139deg, #00a1ff, #00ff8f);
+}
+
+.container ol li::before{
+    content: counter(my-counter);
+    background: #231381;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: inline-block;
+    line-height: 2rem;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.container ol li input[type="text"]{
+    width: 78%;
+    color: #333;
+    border: none;
+    background: none;
+    padding: 10px;
+    font-size: 22px;
+    outline: none;
+    overflow-wrap: break-word;
+    text-transform: capitalize;
+}
+
+.container ol li a,
+.container ol li button{
+    float: right;
+    padding: 5px;
+    font-size: 22px;
+    line-height: 22px;
+    margin-right: 10px;
+    margin-top: 0.5rem;
+    color: #000000;
+    background: none;
+    border: none;
+    outline: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.container ol li a:hover,
+.container ol li button:hover{
+    background: -webkit-linear-gradient(120deg,#2d388a, #00aeef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container ol li input[type="text"].active{
+    color: #111;
+    border: 1px solid #111;
+    border-radius: 10px;
+}
+
+ol li .edit-task2,
+ol li .close-task{
+    display: none;
+}
+
+ol li .edit-task2.active,
+ol li .close-task.active{
+    display: block;
+}
+
+ol li .edit-task.active,
+ol li .edit-check.active,
+ol li .edit-trash.active{
+    display: none;
+}
